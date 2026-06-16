@@ -2,6 +2,7 @@ import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Typing from '@/components/Typing';
 import CountUp from '@/components/CountUp';
+import Magnet from '@/components/Magnet';
 import { useLang, content, CV, IMG } from '@/i18n';
 
 const floatPos = [
@@ -18,7 +19,7 @@ const floatPos = [
 export default function Hero() {
   const { lang } = useLang();
   const t = content[lang].hero;
-  const cutout = `${IMG}tram-cutout.png`;
+  const circle = `${IMG}tram-circle.png`;
 
   return (
     <section id="hero" className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-paper">
@@ -97,11 +98,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Cutout portrait integrated into background */}
-          <div className="animate-fade-up relative mx-auto w-full max-w-xs sm:max-w-sm [animation-delay:260ms]">
-            <div className="absolute inset-x-6 bottom-0 top-10 rounded-[3rem] bg-gradient-to-br from-indigo/30 via-sky/25 to-teal/30 blur-3xl" />
-            <img src={cutout} alt="Le Hoang Ngoc Tram" className="relative w-full drop-shadow-2xl" loading="eager" />
-          </div>
+          {/* Circular portrait — soft ring + magnetic mouse-follow */}
+          <Magnet className="animate-fade-up relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] [animation-delay:260ms]" padding={140} strength={5}>
+            <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-indigo/40 via-sky/30 to-teal/40 blur-2xl" />
+            <div className="relative rounded-full bg-white p-2 shadow-soft">
+              <div className="rounded-full bg-gradient-to-br from-indigo via-sky to-teal p-[3px]">
+                <img src={circle} alt="Le Hoang Ngoc Tram" className="w-full rounded-full bg-white" loading="eager" />
+              </div>
+            </div>
+          </Magnet>
         </div>
 
         {/* Stats with count-up */}

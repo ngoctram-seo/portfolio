@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Reveal from '@/components/Reveal';
+import AnimatedText from '@/components/AnimatedText';
 import { useLang, content } from '@/i18n';
 
 export default function About() {
@@ -22,7 +23,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={120}>
             <div className="space-y-6">
-              <p className="text-lg leading-8 text-body">{t.lead}</p>
+              <AnimatedText text={t.lead} className="text-lg leading-8 text-ink" />
               <Card className="p-6">
                 <ul className="space-y-4 text-sm leading-7 text-body">
                   {t.highlights.map((item) => (
