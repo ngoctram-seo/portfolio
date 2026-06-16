@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Download, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useLang, content, CV } from '@/i18n';
+import { useLang, content, CV, EMAIL } from '@/i18n';
 
 export default function Navbar() {
   const { lang, setLang } = useLang();
@@ -17,9 +17,9 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: t.work, href: '#work' },
-    { label: t.cases, href: '#case-studies' },
-    { label: t.experience, href: '#experience' },
+    { label: t.about, href: '#about' },
+    { label: t.journey, href: '#journey' },
+    { label: t.projects, href: '#projects' },
     { label: t.stack, href: '#stack' },
     { label: t.contact, href: '#contact' }
   ];
@@ -82,7 +82,7 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent>
               <div className="mb-8 pr-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal">SEO & GEO Specialist</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal">SEO &amp; GEO Specialist</p>
                 <p className="mt-2 text-sm text-ink/60">{content[lang].contact.location}</p>
               </div>
               <div className="grid gap-4">
@@ -102,8 +102,8 @@ export default function Navbar() {
                   </a>
                 </Button>
                 <Button asChild variant="secondary" className="justify-between pr-2">
-                  <a href="#contact">
-                    {t.contactCta}
+                  <a href={`mailto:${EMAIL}`}>
+                    {t.contactNow}
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>

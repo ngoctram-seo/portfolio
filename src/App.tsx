@@ -2,8 +2,8 @@ import { LanguageProvider } from '@/i18n';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import CaseStudies from '@/components/CaseStudies';
-import Experience from '@/components/Experience';
+import Journey from '@/components/Journey';
+import Projects from '@/components/Projects';
 import Stack from '@/components/Stack';
 import Contact from '@/components/Contact';
 
@@ -15,8 +15,8 @@ export default function App() {
         <main>
           <Hero />
           <About />
-          <CaseStudies />
-          <Experience />
+          <Journey />
+          <Projects />
           <Stack />
           <Contact />
         </main>

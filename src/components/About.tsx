@@ -8,7 +8,7 @@ export default function About() {
   const t = content[lang].about;
 
   return (
-    <section id="work" className="relative overflow-hidden px-5 py-20 sm:px-8 lg:py-28">
+    <section id="about" className="relative overflow-hidden px-5 py-20 sm:px-8 lg:py-28">
       <div className="aurora aurora-2 right-[-6rem] top-10 h-64 w-64 bg-sky/20" />
       <div className="mx-auto max-w-6xl">
         <Reveal>

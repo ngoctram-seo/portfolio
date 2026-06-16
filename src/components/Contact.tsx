@@ -1,14 +1,14 @@
 import { ArrowRight, Download, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Reveal from '@/components/Reveal';
-import { useLang, content, CV } from '@/i18n';
+import { useLang, content, CV, EMAIL } from '@/i18n';
 
 export default function Contact() {
   const { lang } = useLang();
   const t = content[lang].contact;
 
   const channels = [
-    { icon: Mail, label: 'tramle37@gmail.com', href: 'mailto:tramle37@gmail.com' },
+    { icon: Mail, label: EMAIL, href: `mailto:${EMAIL}` },
     { icon: Linkedin, label: 'linkedin.com/in/tram-le-seo', href: 'https://www.linkedin.com/in/tram-le-seo/' },
     { icon: Phone, label: '+84 908 083 219', href: 'tel:+84908083219' }
   ];
@@ -26,6 +26,14 @@ export default function Contact() {
                 {t.heading}
               </h2>
               <p className="mt-6 max-w-xl text-base leading-8 text-body">{t.lead}</p>
+              {/* Primary CTA */}
+              <Button asChild size="lg" className="cv-glow group mt-8 bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
+                <a href={`mailto:${EMAIL}`}>
+                  <Mail className="mr-3 h-5 w-5" />
+                  {t.contactNow}
+                  <ArrowRight className="ml-3 h-4 w-4 transition group-hover:translate-x-1" />
+                </a>
+              </Button>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -53,7 +61,7 @@ export default function Contact() {
 
         <Reveal>
           <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-            <Button asChild className="cv-glow bg-gradient-to-r from-indigo to-sky text-white">
+            <Button asChild variant="secondary">
               <a href={CV.en} target="_blank" rel="noreferrer">
                 <Download className="mr-2 h-4 w-4" /> {t.downloadEN}
               </a>
