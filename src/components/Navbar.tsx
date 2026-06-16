@@ -1,89 +1,116 @@
+import { useEffect, useState } from 'react';
 import { ArrowRight, Download, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-
-const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'Case Studies', href: '#case-studies' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contact', href: '#contact' }
-];
+import { useLang, content, CV } from '@/i18n';
 
 export default function Navbar() {
+  const { lang, setLang } = useLang();
+  const t = content[lang].nav;
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
+    { label: t.work, href: '#work' },
+    { label: t.cases, href: '#case-studies' },
+    { label: t.experience, href: '#experience' },
+    { label: t.stack, href: '#stack' },
+    { label: t.contact, href: '#contact' }
+  ];
+
+  const LangToggle = () => (
+    <div className="flex items-center rounded-full border border-ink/10 bg-white/70 p-0.5 text-xs font-semibold">
+      {(['vi', 'en'] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={`rounded-full px-2.5 py-1 transition ${lang === l ? 'bg-ink text-white' : 'text-ink/55 hover:text-ink'}`}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 py-4 sm:px-6 lg:px-8">
       <nav
         aria-label="Primary navigation"
-        className="liquid-glass mx-auto flex max-w-6xl items-center justify-between rounded-full px-3 py-2"
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-3 py-2 transition-all duration-300 ${
+          scrolled ? 'glass shadow-soft' : 'glass'
+        }`}
       >
-        <a href="#hero" className="flex items-center gap-3" aria-label="Joyce Le portfolio home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-charcoal text-xs font-bold tracking-tight text-white">
-            JL
+        <a href="#hero" className="flex items-center gap-3" aria-label="Tram Le portfolio home">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo to-sky text-xs font-bold tracking-tight text-white">
+            TL
           </span>
-          <span className="hidden text-sm font-semibold tracking-tight text-charcoal sm:inline">Joyce Le</span>
+          <span className="hidden font-display text-sm font-bold tracking-tight text-ink sm:inline">Tram Le</span>
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-medium text-charcoal/70 transition hover:text-charcoal">
+            <a key={link.href} href={link.href} className="text-sm font-semibold text-ink/70 transition hover:text-ink">
               {link.label}
             </a>
           ))}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button asChild variant="secondary" size="sm" className="gap-2">
-            <a href={`${import.meta.env.BASE_URL}cv/Joyce_Le_CV_EN.pdf`} aria-label="Download Joyce Le English CV">
-              <Download className="h-4 w-4" />
-              Download CV
-            </a>
-          </Button>
-          <Button asChild size="sm" className="group gap-2 pr-2">
-            <a href="#contact" aria-label="Contact Joyce Le">
-              Contact
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-charcoal transition duration-300 group-hover:-rotate-45">
-                <ArrowRight className="h-4 w-4" />
-              </span>
+          <LangToggle />
+          <Button asChild size="sm" className="cv-glow group gap-2 bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
+            <a href={CV[lang]} target="_blank" rel="noreferrer" aria-label={t.downloadCV}>
+              <Download className="h-4 w-4 transition group-hover:translate-y-0.5" />
+              {t.downloadCV}
             </a>
           </Button>
         </div>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="default" size="icon" className="md:hidden" aria-label="Open mobile menu">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <div className="mb-8 pr-10">
-              <p className="text-xs uppercase tracking-[0.3em] text-teal">SEO & GEO Specialist</p>
-              <p className="mt-2 text-sm text-charcoal/60">Ho Chi Minh City · Open to SEO, GEO, and organic growth roles.</p>
-            </div>
-            <div className="grid gap-4">
-              {links.map((link) => (
-                <a key={link.href} href={link.href} className="text-3xl font-semibold tracking-[-0.04em] text-charcoal" aria-label={`Go to ${link.label}`}>
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <div className="mt-8 grid gap-3">
-              <Button asChild className="justify-between pr-2">
-                <a href={`${import.meta.env.BASE_URL}cv/Joyce_Le_CV_EN.pdf`} aria-label="Download English CV">
-                  Download CV
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-charcoal">
-                    <Download className="h-4 w-4" />
-                  </span>
-                </a>
+        <div className="flex items-center gap-2 md:hidden">
+          <LangToggle />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="default" size="icon" aria-label="Open mobile menu">
+                <Menu className="h-5 w-5" />
               </Button>
-              <Button asChild variant="secondary" className="justify-between pr-2">
-                <a href="#contact" aria-label="Contact Joyce Le">
-                  Start a conversation
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-          </SheetContent>
-        </Sheet>
+            </SheetTrigger>
+            <SheetContent>
+              <div className="mb-8 pr-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal">SEO & GEO Specialist</p>
+                <p className="mt-2 text-sm text-ink/60">{content[lang].contact.location}</p>
+              </div>
+              <div className="grid gap-4">
+                {links.map((link) => (
+                  <a key={link.href} href={link.href} className="font-display text-3xl font-bold tracking-[-0.04em] text-ink">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-8 grid gap-3">
+                <Button asChild className="cv-glow justify-between bg-gradient-to-r from-indigo to-sky pr-2 text-white">
+                  <a href={CV[lang]} target="_blank" rel="noreferrer">
+                    {t.downloadCV}
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/25">
+                      <Download className="h-4 w-4" />
+                    </span>
+                  </a>
+                </Button>
+                <Button asChild variant="secondary" className="justify-between pr-2">
+                  <a href="#contact">
+                    {t.contactCta}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     </header>
   );

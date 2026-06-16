@@ -1,65 +1,69 @@
 import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const stats = [
-  ['5+', 'years in SEO'],
-  ['8K+', 'commercial keywords'],
-  ['14K+', 'tracked weekly'],
-  ['90%', 'Google Top 1-3'],
-  ['45%', 'traffic growth'],
-  ['20%', 'cost reduction']
-];
+import { useLang, content, CV } from '@/i18n';
 
 export default function Hero() {
+  const { lang } = useLang();
+  const t = content[lang].hero;
+  const portrait = `${import.meta.env.BASE_URL}img/tram-portrait.jpg`;
+
   return (
-    <section id="hero" className="relative flex min-h-screen overflow-hidden bg-charcoal text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(15,118,110,0.45),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(249,115,22,0.25),transparent_30%),linear-gradient(135deg,#0f1412,#1f2925_45%,#0f1412)]" />
-      <video
-        className="absolute inset-0 h-full w-full object-cover opacity-35 mix-blend-screen"
-        src={`${import.meta.env.BASE_URL}video/hero-bg.mp4`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/30 to-charcoal/90" />
+    <section id="hero" className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-paper">
+      {/* Bright gradient base + ambient aurora blobs */}
+      <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_0%,#eef2ff_0%,#f4f7fd_45%,#ecfeff_100%)]" />
+      <div className="aurora aurora-1 left-[-6rem] top-24 h-72 w-72 bg-indigo/40" />
+      <div className="aurora aurora-2 right-[-4rem] top-40 h-80 w-80 bg-sky/40" />
+      <div className="aurora aurora-3 bottom-[-6rem] left-1/3 h-72 w-72 bg-teal/30" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-end px-5 pb-16 pt-36 sm:px-8 sm:pb-20 lg:px-8 lg:pb-24">
-        <div className="max-w-5xl">
-          <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.28em] text-teal/90 sm:text-sm">
-            SEO & GEO Specialist · Ho Chi Minh City
-          </p>
-          <h1 className="animate-fade-up mt-6 max-w-5xl text-[clamp(2.5rem,8vw,6.8rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-white [animation-delay:120ms]">
-            I help websites rank — and build the systems that make SEO scale faster.
-          </h1>
-          <p className="animate-fade-up mt-7 max-w-3xl text-base leading-8 text-white/72 sm:text-lg [animation-delay:220ms]">
-            SEO Specialist with 5+ years of experience across e-commerce, YMYL beauty & healthcare, education, and interior design. I combine Technical SEO, Entity SEO, Semantic SEO, GEO, AI workflows, and automation to grow organic visibility at scale.
-          </p>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-32 sm:px-8 lg:pt-28">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+          <div>
+            <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.26em] text-teal sm:text-sm">
+              {t.eyebrow}
+            </p>
+            <h1 className="animate-fade-up mt-5 font-display text-[clamp(2.6rem,7vw,5.4rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-ink [animation-delay:120ms]">
+              {t.hello} <span className="gradient-text">{t.name}</span>.
+            </h1>
+            <p className="animate-fade-up mt-5 max-w-2xl font-display text-[clamp(1.15rem,2.4vw,1.85rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-ink/80 [animation-delay:200ms]">
+              {t.tagline}
+            </p>
+            <p className="animate-fade-up mt-5 max-w-2xl text-base leading-8 text-body [animation-delay:300ms]">
+              {t.intro}
+            </p>
 
-          <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row [animation-delay:320ms]">
-            <Button asChild size="lg" className="group bg-teal text-white hover:bg-teal/90">
-              <a href="#case-studies" aria-label="View Joyce Le case studies">
-                View case studies
-                <span className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-white text-teal transition duration-500 group-hover:-rotate-45">
-                  <ArrowRight className="h-4 w-4" />
-                </span>
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="group">
-              <a href={`${import.meta.env.BASE_URL}cv/Joyce_Le_CV_EN.pdf`} aria-label="Download Joyce Le CV">
-                Download CV
-                <Download className="ml-3 h-4 w-4 transition duration-300 group-hover:translate-y-0.5" />
-              </a>
-            </Button>
+            <div className="animate-fade-up mt-8 flex flex-col gap-3 sm:flex-row [animation-delay:400ms]">
+              <Button asChild size="lg" className="cv-glow group bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
+                <a href={CV[lang]} target="_blank" rel="noreferrer" aria-label={t.downloadCV}>
+                  <Download className="mr-3 h-5 w-5 transition duration-300 group-hover:translate-y-0.5" />
+                  {t.downloadCV}
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="secondary" className="group">
+                <a href="#case-studies" aria-label={t.viewCases}>
+                  {t.viewCases}
+                  <span className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-ink text-white transition duration-500 group-hover:-rotate-45">
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          {/* Portrait */}
+          <div className="animate-fade-up relative mx-auto w-full max-w-xs sm:max-w-sm [animation-delay:260ms]">
+            <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-indigo/30 via-sky/25 to-teal/30 blur-2xl" />
+            <div className="glass relative overflow-hidden rounded-[2rem] p-2">
+              <img src={portrait} alt="Le Hoang Ngoc Tram" className="w-full rounded-[1.5rem] object-cover" loading="eager" />
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {stats.map(([number, label]) => (
-            <div key={label} className="liquid-glass rounded-3xl p-4 text-white">
-              <div className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{number}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/55">{label}</div>
+        {/* Stats strip (in normal flow) */}
+        <div className="animate-fade-up mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 [animation-delay:480ms]">
+          {t.stats.map(([number, label]) => (
+            <div key={label} className="glass rounded-2xl px-4 py-3">
+              <div className="font-display text-2xl font-bold tracking-[-0.03em] text-ink">{number}</div>
+              <div className="mt-0.5 text-[0.68rem] uppercase tracking-[0.1em] text-body">{label}</div>
             </div>
           ))}
         </div>
