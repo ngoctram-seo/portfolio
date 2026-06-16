@@ -19,7 +19,7 @@ const floatPos = [
 export default function Hero() {
   const { lang } = useLang();
   const t = content[lang].hero;
-  const circle = `${IMG}tram-circle.png`;
+  const portrait = `${IMG}tram-hero.png`;
 
   return (
     <section id="hero" className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-paper">
@@ -98,14 +98,10 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Circular portrait — soft ring + magnetic mouse-follow */}
-          <Magnet className="animate-fade-up relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] [animation-delay:260ms]" padding={140} strength={5}>
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-indigo/40 via-sky/30 to-teal/40 blur-2xl" />
-            <div className="relative rounded-full bg-white p-2 shadow-soft">
-              <div className="rounded-full bg-gradient-to-br from-indigo via-sky to-teal p-[3px]">
-                <img src={circle} alt="Le Hoang Ngoc Tram" className="w-full rounded-full bg-white" loading="eager" />
-              </div>
-            </div>
+          {/* Portrait (image already has its own glowing oval ring) */}
+          <Magnet className="animate-fade-up relative mx-auto w-full max-w-[20rem] sm:max-w-[24rem] [animation-delay:260ms]" padding={140} strength={6}>
+            <div className="absolute inset-6 rounded-full bg-gradient-to-br from-indigo/30 via-sky/25 to-teal/30 blur-3xl" />
+            <img src={portrait} alt="Le Hoang Ngoc Tram" className="relative w-full drop-shadow-xl" loading="eager" />
           </Magnet>
         </div>
 

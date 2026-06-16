@@ -2,7 +2,8 @@ import { TrendingUp, Wrench } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Reveal from '@/components/Reveal';
-import { useLang, content, IMG } from '@/i18n';
+import LogoImg from '@/components/LogoImg';
+import { useLang, content, IMG, companyDomain } from '@/i18n';
 
 export default function Journey() {
   const { lang } = useLang();
@@ -34,10 +35,17 @@ export default function Journey() {
                 <div className="relative">
                   <span className="absolute -left-8 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-indigo to-sky ring-4 ring-paper sm:-left-10" />
                   <Card className="p-6 sm:p-7">
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                      <div>
-                        <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-ink">{item.role}</h3>
-                        <p className="text-sm font-medium text-teal">{item.company}</p>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex items-center gap-3">
+                        {companyDomain(item.company) && (
+                          <span className="flex h-11 w-11 flex-none items-center justify-center overflow-hidden rounded-full border border-ink/10 bg-white p-1.5 shadow-sm">
+                            <LogoImg domain={companyDomain(item.company)} alt={item.company} className="max-h-full max-w-full object-contain" />
+                          </span>
+                        )}
+                        <div>
+                          <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-ink">{item.role}</h3>
+                          <p className="text-sm font-medium text-teal">{item.company}</p>
+                        </div>
                       </div>
                       <span className="rounded-full border border-ink/10 bg-paper px-3 py-1 text-xs font-semibold text-body">
                         {item.date}

@@ -32,6 +32,30 @@ export const CV = {
 };
 export const IMG = `${import.meta.env.BASE_URL}img/`;
 export const EMAIL = 'tramle37@gmail.com';
+export const PHONE = '0908083219';
+export const ZALO = 'https://zalo.me/0908083219';
+
+export const COMPANIES = [
+  { name: 'Điện Máy Xanh', domain: 'dienmayxanh.com' },
+  { name: 'Thẩm Mỹ Linh Anh', domain: 'thammylinhanh.vn' },
+  { name: 'F Interior', domain: 'finterior.com.vn' },
+  { name: 'Deco Crystal', domain: 'deco-crystal.com' },
+  { name: 'eTest', domain: 'etest.edu.vn' },
+  { name: 'Digiphone', domain: 'digiphone.vn' }
+];
+
+export const MARQUEE_TITLE = {
+  vi: 'Những dự án đã thực hiện',
+  en: "Projects I've worked on"
+};
+
+// Logo domain for each journey company (small node logo)
+export const companyDomain = (company: string): string => {
+  if (/Di Động|MWG|Dienmayxanh/i.test(company)) return 'dienmayxanh.com';
+  if (/Linh Anh/i.test(company)) return 'thammylinhanh.vn';
+  if (/GTV/i.test(company)) return 'gtvseo.com';
+  return '';
+};
 
 type TimelineItem = {
   company: string;
@@ -105,7 +129,7 @@ export const content: Record<Lang, Dict> = {
       eyebrow: 'Giới thiệu',
       heading: 'Tôi giải quyết vấn đề gì cho doanh nghiệp',
       lead:
-        'Trâm là chuyên viên SEO tập trung vào tăng trưởng organic có khả năng mở rộng trong các ngành cạnh tranh cao — cả môi trường in-house lẫn agency, quản lý danh mục từ 100 đến hơn 10.000 từ khóa và xây quy trình giảm công sức SEO thủ công.',
+        'Tôi là chuyên viên SEO tập trung vào tăng trưởng organic có khả năng mở rộng trong các ngành cạnh tranh cao — cả môi trường in-house lẫn agency, quản lý danh mục từ 100 đến hơn 10.000 từ khóa và xây quy trình giảm công sức SEO thủ công.',
       highlights: [
         'Tăng organic traffic và thứ hạng cho ngành e-commerce, YMYL (làm đẹp & y tế), giáo dục và nội thất.',
         'Xây kiến trúc internal linking và lập chỉ mục ở quy mô hàng nghìn trang.',
@@ -117,7 +141,7 @@ export const content: Record<Lang, Dict> = {
     journey: {
       eyebrow: 'Kinh nghiệm & Thành tựu',
       heading: 'Hành trình 5 năm thực chiến',
-      sub: 'Mỗi cột mốc gồm thành tựu đo lường được (case study) và những gì đã triển khai để đạt được.',
+      sub: 'Mỗi cột mốc gồm thành tựu đo lường được và những gì đã triển khai để đạt được.',
       chartCaption: 'Tăng trưởng organic traffic của hệ sinh thái Linh Anh (nguồn: Ahrefs).',
       items: [
         {
@@ -181,7 +205,7 @@ export const content: Record<Lang, Dict> = {
     projects: {
       eyebrow: 'Portfolio',
       heading: 'Dự án & Sản phẩm',
-      sub: 'Các sản phẩm, dự án và thành tựu tiêu biểu. (Bạn có thể gắn hình và link xem thêm cho từng ô.)',
+      sub: 'Nơi tôi trưng bày các sản phẩm, dự án và thành tựu tiêu biểu.',
       more: 'Xem thêm',
       items: placeholderProjects('Dự án')
     },
@@ -245,7 +269,7 @@ export const content: Record<Lang, Dict> = {
     journey: {
       eyebrow: 'Experience & Results',
       heading: '5 Years in the Trenches',
-      sub: 'Each milestone pairs measurable results (case study) with what was implemented to get there.',
+      sub: 'Each milestone pairs measurable results with what was implemented to get there.',
       chartCaption: 'Organic traffic growth across the Linh Anh ecosystem (source: Ahrefs).',
       items: [
         {
@@ -309,7 +333,7 @@ export const content: Record<Lang, Dict> = {
     projects: {
       eyebrow: 'Portfolio',
       heading: 'Projects & Products',
-      sub: 'Selected products, projects, and achievements. (You can add a thumbnail and a link for each card.)',
+      sub: 'Where I showcase my standout products, projects, and achievements.',
       more: 'View more',
       items: placeholderProjects('Project')
     },

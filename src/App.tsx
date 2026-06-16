@@ -3,23 +3,37 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Journey from '@/components/Journey';
+import LogoMarquee from '@/components/LogoMarquee';
 import Projects from '@/components/Projects';
 import Stack from '@/components/Stack';
 import Contact from '@/components/Contact';
+import BackToTop from '@/components/BackToTop';
+import ZaloButton from '@/components/ZaloButton';
 
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen overflow-x-hidden bg-paper text-ink">
+      <div className="relative min-h-screen overflow-x-hidden text-ink">
+        {/* Animated ambient background across the whole page */}
+        <div className="page-bg" aria-hidden="true">
+          <span className="page-blob page-blob-1" />
+          <span className="page-blob page-blob-2" />
+          <span className="page-blob page-blob-3" />
+        </div>
+
         <Navbar />
-        <main>
+        <main className="relative">
           <Hero />
           <About />
           <Journey />
+          <LogoMarquee />
           <Projects />
           <Stack />
           <Contact />
         </main>
+
+        <BackToTop />
+        <ZaloButton />
       </div>
     </LanguageProvider>
   );

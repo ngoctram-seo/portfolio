@@ -51,7 +51,6 @@ export default function Navbar() {
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo to-sky text-xs font-bold tracking-tight text-white">
             TL
           </span>
-          <span className="hidden font-display text-sm font-bold tracking-tight text-ink sm:inline">Tram Le</span>
         </a>
 
         <div className="hidden items-center gap-6 lg:flex">
