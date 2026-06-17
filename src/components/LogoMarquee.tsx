@@ -16,7 +16,7 @@ export default function LogoMarquee() {
 
   return (
     <section className="relative overflow-hidden border-y border-ink/5 bg-white/55 py-14">
-      <p className="mb-9 text-center font-display text-sm font-bold uppercase tracking-[0.24em] text-teal">
+      <p className="mb-9 text-center font-display text-2xl font-bold tracking-[-0.02em] text-ink">
         {MARQUEE_TITLE[lang]}
       </p>
       <div className="marquee-mask relative flex overflow-hidden">

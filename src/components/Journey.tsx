@@ -105,33 +105,6 @@ export default function Journey() {
             ))}
           </div>
         </div>
-
-        {/* Metrics table (2 columns) with hover effect */}
-        <div className="mt-16">
-          <Reveal>
-            <h3 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink">{t.metricsTitle}</h3>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="mt-6 overflow-hidden rounded-2xl border border-ink/8 bg-white/70">
-              <div className="grid grid-cols-[0.9fr_1.6fr] border-b border-ink/8 bg-paper/60 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-teal sm:grid-cols-[0.7fr_1.8fr]">
-                <span>{t.metricsCols[0]}</span>
-                <span>{t.metricsCols[1]}</span>
-              </div>
-              {t.metrics.map((m) => (
-                <div
-                  key={m.value + m.label}
-                  className="metric-row grid grid-cols-[0.9fr_1.6fr] items-center gap-3 border-b border-ink/5 px-5 py-4 transition-colors last:border-0 sm:grid-cols-[0.7fr_1.8fr]"
-                >
-                  <div>
-                    <div className="gradient-text font-display text-2xl font-extrabold tracking-[-0.03em]">{m.value}</div>
-                    <div className="text-xs text-body">{m.label}</div>
-                  </div>
-                  <p className="text-sm leading-6 text-body">{m.result}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
       </div>
     </section>
   );

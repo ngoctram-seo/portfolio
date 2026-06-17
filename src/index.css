@@ -160,3 +160,32 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .float-fast { animation: none !important; }
 }
+
+/* ===== Education animated 3D emblem ===== */
+.edu-scene { position: relative; width: 280px; height: 280px; perspective: 900px; }
+.edu-orb {
+  position: absolute; inset: 30px; border-radius: 9999px;
+  transform-style: preserve-3d; animation: eduFloat 6s ease-in-out infinite;
+}
+.edu-orb-face {
+  position: absolute; inset: 0; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 32% 28%, #818cf8, #6366f1 40%, #0ea5e9 78%, #0d9488 100%);
+  box-shadow: inset -18px -22px 50px rgba(13,148,136,.55), inset 16px 14px 40px rgba(255,255,255,.35), 0 30px 60px -18px rgba(99,102,241,.55);
+  animation: eduSpin 14s linear infinite;
+}
+@keyframes eduFloat { 0%,100% { transform: translateY(0) rotateX(8deg); } 50% { transform: translateY(-18px) rotateX(-6deg); } }
+@keyframes eduSpin { 0% { transform: rotateY(0deg); } 50% { transform: rotateY(16deg); } 100% { transform: rotateY(0deg); } }
+.edu-ring { position: absolute; border-radius: 9999px; border: 1.5px dashed rgba(99,102,241,.35); }
+.edu-ring-1 { inset: 6px; animation: eduRing 18s linear infinite; }
+.edu-ring-2 { inset: -14px; border-color: rgba(14,165,233,.28); animation: eduRing 24s linear infinite reverse; }
+@keyframes eduRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.edu-dot { position: absolute; height: 14px; width: 14px; border-radius: 9999px; }
+.edu-dot-1 { top: 4%; left: 50%; background: #6366f1; animation: eduOrbit 10s linear infinite; }
+.edu-dot-2 { bottom: 8%; left: 12%; height: 10px; width: 10px; background: #0ea5e9; animation: eduOrbit 13s linear infinite reverse; }
+.edu-dot-3 { top: 30%; right: 4%; height: 8px; width: 8px; background: #14b8a6; animation: eduOrbit 16s linear infinite; }
+@keyframes eduOrbit { 0%,100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-14px); opacity: .6; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .edu-orb, .edu-orb-face, .edu-ring, .edu-dot { animation: none !important; }
+}

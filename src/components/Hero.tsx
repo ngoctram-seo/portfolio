@@ -4,17 +4,6 @@ import Typing from '@/components/Typing';
 import Magnet from '@/components/Magnet';
 import { useLang, content, CV, IMG } from '@/i18n';
 
-const floatPos = [
-  { top: '8%', left: '2%' },
-  { top: '20%', right: '40%' },
-  { top: '4%', right: '6%' },
-  { top: '46%', left: '0%' },
-  { bottom: '30%', right: '2%' },
-  { bottom: '14%', left: '6%' },
-  { top: '60%', right: '38%' },
-  { bottom: '6%', right: '30%' }
-];
-
 export default function Hero() {
   const { lang } = useLang();
   const t = content[lang].hero;
@@ -26,26 +15,6 @@ export default function Hero() {
       <div className="aurora aurora-1 left-[-6rem] top-24 h-72 w-72 bg-indigo/40" />
       <div className="aurora aurora-2 right-[-4rem] top-40 h-80 w-80 bg-sky/40" />
       <div className="aurora aurora-3 bottom-[-6rem] left-1/3 h-72 w-72 bg-teal/30" />
-
-      {/* Floating keyword chips (colored, faster) */}
-      <div className="pointer-events-none absolute inset-0 hidden lg:block">
-        {t.floats.map((label, i) => {
-          const palette = [
-            'border-indigo/25 bg-indigo/10 text-indigo',
-            'border-sky/25 bg-sky/10 text-sky',
-            'border-teal/25 bg-teal/10 text-teal'
-          ];
-          return (
-            <span
-              key={label}
-              className={`float-fast float-fast-${(i % 3) + 1} absolute rounded-full border px-3 py-1 text-xs font-semibold shadow-sm backdrop-blur ${palette[i % 3]}`}
-              style={floatPos[i % floatPos.length]}
-            >
-              {label}
-            </span>
-          );
-        })}
-      </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-32 sm:px-8 lg:pt-28">
         <div className="grid items-center gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10">

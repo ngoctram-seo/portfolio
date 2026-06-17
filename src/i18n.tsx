@@ -78,7 +78,9 @@ export const toolDomain = (name: string): string => {
     'n8n': 'n8n.io',
     'Make': 'make.com',
     'IFTTT': 'ifttt.com',
-    'Figma': 'figma.com'
+    'Figma': 'figma.com',
+    'Schema Markup': 'schema.org',
+    'Core Web Vitals': 'web.dev'
   };
   return map[name] || '';
 };

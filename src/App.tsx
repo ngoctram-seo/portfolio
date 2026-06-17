@@ -6,6 +6,7 @@ import Journey from '@/components/Journey';
 import LogoMarquee from '@/components/LogoMarquee';
 import Projects from '@/components/Projects';
 import Stack from '@/components/Stack';
+import Education from '@/components/Education';
 import Contact from '@/components/Contact';
 import BackToTop from '@/components/BackToTop';
 import ZaloButton from '@/components/ZaloButton';
@@ -30,6 +31,7 @@ export default function App() {
           <LogoMarquee />
           <Projects />
           <Stack />
+          <Education />
           <Contact />
         </main>
 
