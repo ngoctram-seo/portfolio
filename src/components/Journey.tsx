@@ -38,8 +38,12 @@ export default function Journey() {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3">
                         {companyDomain(item.company) && (
-                          <span className="flex h-11 w-11 flex-none items-center justify-center overflow-hidden rounded-full border border-ink/10 bg-white p-1.5 shadow-sm">
-                            <LogoImg domain={companyDomain(item.company)} alt={item.company} className="max-h-full max-w-full object-contain" />
+                          <span className="flex h-11 w-11 flex-none items-center justify-center overflow-hidden rounded-full border border-ink/10 bg-white shadow-sm">
+                            {/MWG|Di Động/i.test(item.company) ? (
+                              <img src={`${IMG}logo-mwg.png`} alt={item.company} className="h-full w-full object-cover" loading="lazy" />
+                            ) : (
+                              <LogoImg domain={companyDomain(item.company)} alt={item.company} className="max-h-[70%] max-w-[70%] object-contain" />
+                            )}
                           </span>
                         )}
                         <div>

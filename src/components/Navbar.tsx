@@ -8,12 +8,30 @@ export default function Navbar() {
   const { lang, setLang } = useLang();
   const t = content[lang].nav;
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('hero');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = ['about', 'journey', 'projects', 'stack', 'contact'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   const links = [
@@ -48,17 +66,24 @@ export default function Navbar() {
         }`}
       >
         <a href="#hero" className="flex items-center gap-3" aria-label="Tram Le portfolio home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo to-sky text-xs font-bold tracking-tight text-white">
-            TL
+          <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-white shadow-sm">
+            <span className="signature -mt-1 text-[1.7rem] leading-none text-ink">tl</span>
           </span>
         </a>
 
         <div className="hidden items-center gap-6 lg:flex">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-semibold text-ink/70 transition hover:text-ink">
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) => {
+            const isActive = link.href === `#${active}`;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-semibold transition ${isActive ? 'text-teal' : 'text-ink/70 hover:text-ink'}`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">

@@ -9,6 +9,7 @@ import Stack from '@/components/Stack';
 import Contact from '@/components/Contact';
 import BackToTop from '@/components/BackToTop';
 import ZaloButton from '@/components/ZaloButton';
+import CustomCursor from '@/components/CustomCursor';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
 
         <BackToTop />
         <ZaloButton />
+        <CustomCursor />
       </div>
     </LanguageProvider>
   );

@@ -22,7 +22,7 @@ export default function Projects() {
             </h2>
           </Reveal>
           <Reveal delay={80}>
-            <p className="max-w-sm text-sm leading-7 text-body">{t.sub}</p>
+            <p className="max-w-md text-pretty text-sm leading-7 text-body">{t.sub}</p>
           </Reveal>
         </div>
 

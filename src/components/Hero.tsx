@@ -1,7 +1,6 @@
 import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Typing from '@/components/Typing';
-import CountUp from '@/components/CountUp';
 import Magnet from '@/components/Magnet';
 import { useLang, content, CV, IMG } from '@/i18n';
 
@@ -105,12 +104,12 @@ export default function Hero() {
           </Magnet>
         </div>
 
-        {/* Stats with count-up */}
-        <div className="animate-fade-up mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 [animation-delay:480ms]">
+        {/* Stats — static, large, gradient numbers */}
+        <div className="animate-fade-up mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 [animation-delay:480ms]">
           {t.stats.map(([number, label]) => (
-            <div key={label} className="glass rounded-2xl px-4 py-3">
-              <CountUp value={number} className="font-display text-2xl font-bold tracking-[-0.03em] text-ink" />
-              <div className="mt-0.5 text-[0.68rem] uppercase tracking-[0.1em] text-body">{label}</div>
+            <div key={label} className="text-center sm:text-left">
+              <div className="gradient-text font-display text-4xl font-extrabold tracking-[-0.04em] sm:text-5xl">{number}</div>
+              <div className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-body">{label}</div>
             </div>
           ))}
         </div>

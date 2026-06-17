@@ -86,7 +86,7 @@ type Dict = {
     stats: [string, string][];
     floats: string[];
   };
-  about: { eyebrow: string; heading: string; lead: string; highlights: string[] };
+  about: { eyebrow: string; heading: string; lead: string; highlights: string[]; eduTitle: string; education: { school: string; degree: string; time: string }[]; certsTitle: string; certs: string[] };
   journey: { eyebrow: string; heading: string; sub: string; chartCaption: string; items: TimelineItem[] };
   projects: { eyebrow: string; heading: string; sub: string; more: string; items: Project[] };
   stack: { eyebrow: string; heading: string; groups: { title: string; items: string[] }[] };
@@ -118,7 +118,6 @@ export const content: Record<Lang, Dict> = {
       stats: [
         ['5+', 'năm làm SEO'],
         ['8K+', 'từ khóa thương mại'],
-        ['14K+', 'từ khóa theo dõi/tuần'],
         ['90%', 'Top 1-3 Google'],
         ['45%', 'tăng trưởng traffic'],
         ['20%', 'giảm chi phí']
@@ -127,7 +126,7 @@ export const content: Record<Lang, Dict> = {
     },
     about: {
       eyebrow: 'Giới thiệu',
-      heading: 'Tôi giải quyết vấn đề gì cho doanh nghiệp',
+      heading: 'Tôi giải quyết vấn đề gì cho doanh nghiệp?',
       lead:
         'Tôi là chuyên viên SEO tập trung vào tăng trưởng organic có khả năng mở rộng trong các ngành cạnh tranh cao — cả môi trường in-house lẫn agency, quản lý danh mục từ 100 đến hơn 10.000 từ khóa và xây quy trình giảm công sức SEO thủ công.',
       highlights: [
@@ -136,7 +135,13 @@ export const content: Record<Lang, Dict> = {
         'Tự động hóa audit SEO và theo dõi từ khóa bằng Google Apps Script + AI — tiết kiệm hàng giờ mỗi tuần.',
         'Đạt trích dẫn AI Overview (GEO) trên các truy vấn sản phẩm cạnh tranh.',
         'Ra quyết định dựa trên dữ liệu với GA4, Search Console, Looker Studio, Ahrefs, Semrush.'
-      ]
+      ],
+      eduTitle: 'Học vấn',
+      education: [
+        { school: 'Đại học Tài chính – Marketing (UFM)', degree: 'Cử nhân Quản trị Marketing', time: '2017 – 2020' }
+      ],
+      certsTitle: 'Chứng chỉ',
+      certs: ['HubSpot Digital Marketing (2021)', 'SEO Google Maps (2024)', 'HSK 3 Tiếng Trung (2024)', 'IELTS (2020)']
     },
     journey: {
       eyebrow: 'Kinh nghiệm & Thành tựu',
@@ -160,7 +165,8 @@ export const content: Record<Lang, Dict> = {
             'Technical SEO + kiến trúc internal linking cho trang danh mục Dienmayxanh.com.',
             'Tự động hóa audit SEO & theo dõi từ khóa bằng Google Apps Script, Codex, Claude.',
             'Soạn infobox danh mục giàu entity theo chuẩn GEO.',
-            'Cải thiện Core Web Vitals qua tối ưu hình ảnh toàn site và nâng cấp sitemap.'
+            'Cải thiện Core Web Vitals qua tối ưu hình ảnh toàn site và nâng cấp sitemap.',
+            'Triển khai Full-Stack SEO, phối hợp QC, BA, Dev để đưa yêu cầu kỹ thuật lên sản phẩm.'
           ],
           tags: ['Technical SEO', 'GEO', 'AI Workflows', 'Internal Linking', 'Core Web Vitals', 'E-commerce SEO']
         },
@@ -204,7 +210,7 @@ export const content: Record<Lang, Dict> = {
     },
     projects: {
       eyebrow: 'Portfolio',
-      heading: 'Dự án & Sản phẩm',
+      heading: 'Sản phẩm & Giải pháp',
       sub: 'Nơi tôi trưng bày các sản phẩm, dự án và thành tựu tiêu biểu.',
       more: 'Xem thêm',
       items: placeholderProjects('Dự án')
@@ -246,7 +252,6 @@ export const content: Record<Lang, Dict> = {
       stats: [
         ['5+', 'years in SEO'],
         ['8K+', 'commercial keywords'],
-        ['14K+', 'tracked weekly'],
         ['90%', 'Google Top 1-3'],
         ['45%', 'traffic growth'],
         ['20%', 'cost reduction']
@@ -255,7 +260,7 @@ export const content: Record<Lang, Dict> = {
     },
     about: {
       eyebrow: 'About',
-      heading: 'What problems I solve for businesses',
+      heading: 'What problems I solve for businesses?',
       lead:
         'Tram is an SEO Specialist focused on scalable organic growth across competitive verticals — in-house and agency, managing keyword portfolios from 100 to 10,000+ and building workflows that cut manual SEO effort.',
       highlights: [
@@ -264,7 +269,13 @@ export const content: Record<Lang, Dict> = {
         'Automates SEO audits and keyword tracking with Google Apps Script + AI — saving hours every week.',
         'Earns AI Overview citations (GEO) on competitive product queries.',
         'Makes data-driven decisions with GA4, Search Console, Looker Studio, Ahrefs, and Semrush.'
-      ]
+      ],
+      eduTitle: 'Education',
+      education: [
+        { school: 'University of Finance – Marketing (UFM)', degree: 'BBA in Marketing Management', time: '2017 – 2020' }
+      ],
+      certsTitle: 'Certificates',
+      certs: ['HubSpot Digital Marketing (2021)', 'SEO Google Maps (2024)', 'HSK 3 Chinese (2024)', 'IELTS (2020)']
     },
     journey: {
       eyebrow: 'Experience & Results',
@@ -288,7 +299,8 @@ export const content: Record<Lang, Dict> = {
             'Technical SEO + internal linking architecture for Dienmayxanh.com category pages.',
             'Automated SEO audits & keyword tracking with Google Apps Script, Codex, Claude.',
             'Entity-rich category infoboxes following GEO best practices.',
-            'Core Web Vitals improvements via sitewide image optimization and sitemap upgrades.'
+            'Core Web Vitals improvements via sitewide image optimization and sitemap upgrades.',
+            'Full-Stack SEO, collaborating with QC, BA, and Dev to ship technical requirements.'
           ],
           tags: ['Technical SEO', 'GEO', 'AI Workflows', 'Internal Linking', 'Core Web Vitals', 'E-commerce SEO']
         },
@@ -332,7 +344,7 @@ export const content: Record<Lang, Dict> = {
     },
     projects: {
       eyebrow: 'Portfolio',
-      heading: 'Projects & Products',
+      heading: 'Products & Solutions',
       sub: 'Where I showcase my standout products, projects, and achievements.',
       more: 'View more',
       items: placeholderProjects('Project')
