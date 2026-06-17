@@ -27,17 +27,24 @@ export default function Hero() {
       <div className="aurora aurora-2 right-[-4rem] top-40 h-80 w-80 bg-sky/40" />
       <div className="aurora aurora-3 bottom-[-6rem] left-1/3 h-72 w-72 bg-teal/30" />
 
-      {/* Floating keyword chips (constellation feel) */}
+      {/* Floating keyword chips (colored, faster) */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block">
-        {t.floats.map((label, i) => (
-          <span
-            key={label}
-            className={`aurora-${(i % 3) + 1} absolute rounded-full border border-ink/10 bg-white/70 px-3 py-1 text-xs font-medium text-ink/70 shadow-sm backdrop-blur`}
-            style={floatPos[i % floatPos.length]}
-          >
-            {label}
-          </span>
-        ))}
+        {t.floats.map((label, i) => {
+          const palette = [
+            'border-indigo/25 bg-indigo/10 text-indigo',
+            'border-sky/25 bg-sky/10 text-sky',
+            'border-teal/25 bg-teal/10 text-teal'
+          ];
+          return (
+            <span
+              key={label}
+              className={`float-fast float-fast-${(i % 3) + 1} absolute rounded-full border px-3 py-1 text-xs font-semibold shadow-sm backdrop-blur ${palette[i % 3]}`}
+              style={floatPos[i % floatPos.length]}
+            >
+              {label}
+            </span>
+          );
+        })}
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-32 sm:px-8 lg:pt-28">
@@ -53,8 +60,13 @@ export default function Hero() {
                 {t.status}
               </span>
               <span className="flex items-center gap-1.5">
-                {t.modes.map((m) => (
-                  <span key={m} className="rounded-full border border-ink/10 bg-white/70 px-2.5 py-1 text-xs font-medium text-ink/70">
+                {t.modes.map((m, i) => (
+                  <span
+                    key={m}
+                    className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
+                      i === 0 ? 'bg-indigo/12 text-indigo' : 'bg-sky/12 text-sky'
+                    }`}
+                  >
                     {m}
                   </span>
                 ))}
@@ -104,12 +116,12 @@ export default function Hero() {
           </Magnet>
         </div>
 
-        {/* Stats — static, large, gradient numbers */}
-        <div className="animate-fade-up mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 [animation-delay:480ms]">
+        {/* Stats — large gradient numbers inside bordered cards */}
+        <div className="animate-fade-up mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 [animation-delay:480ms]">
           {t.stats.map(([number, label]) => (
-            <div key={label} className="text-center sm:text-left">
-              <div className="gradient-text font-display text-4xl font-extrabold tracking-[-0.04em] sm:text-5xl">{number}</div>
-              <div className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-body">{label}</div>
+            <div key={label} className="glass rounded-2xl px-4 py-4">
+              <div className="gradient-text font-display text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">{number}</div>
+              <div className="mt-1 text-[0.7rem] font-medium uppercase tracking-[0.1em] text-body">{label}</div>
             </div>
           ))}
         </div>

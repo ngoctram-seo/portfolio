@@ -141,3 +141,22 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .about-orb-1, .about-orb-2, .about-orb-3 { animation: none !important; }
 }
+
+/* ===== Faster floating chips ===== */
+.float-fast { animation: floaty 6s ease-in-out infinite; will-change: transform; }
+.float-fast-1 { animation-duration: 4.5s; }
+.float-fast-2 { animation-duration: 6s; animation-delay: -1.5s; }
+.float-fast-3 { animation-duration: 5.2s; animation-delay: -3s; }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+
+/* ===== Hover bold + lift on journey text ===== */
+.hover-line { transition: transform .25s ease, background-color .25s ease, color .25s ease; }
+.hover-line:hover { background-color: rgba(99,102,241,.07); transform: translateX(6px); color: #0f172a; font-weight: 600; }
+
+/* ===== Metrics table row hover ===== */
+.metric-row:hover { background-color: rgba(14,165,233,.06); }
+.metric-row:hover p { color: #0f172a; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-fast { animation: none !important; }
+}

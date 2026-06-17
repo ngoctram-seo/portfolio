@@ -61,9 +61,9 @@ export default function Journey() {
                         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-ink">
                           <TrendingUp className="h-4 w-4 text-teal" /> {item.achievementsLabel}
                         </p>
-                        <ul className="mt-3 space-y-2.5 text-sm leading-6 text-body">
+                        <ul className="mt-3 space-y-1 text-sm leading-6 text-body">
                           {item.achievements.map((a) => (
-                            <li key={a} className="flex gap-2.5">
+                            <li key={a} className="hover-line flex gap-2.5 rounded-lg px-2 py-1.5">
                               <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-gradient-to-r from-indigo to-sky" />
                               <span>{a}</span>
                             </li>
@@ -74,9 +74,9 @@ export default function Journey() {
                         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-ink">
                           <Wrench className="h-4 w-4 text-sky" /> {item.implementedLabel}
                         </p>
-                        <ul className="mt-3 space-y-2.5 text-sm leading-6 text-body">
+                        <ul className="mt-3 space-y-1 text-sm leading-6 text-body">
                           {item.implemented.map((a) => (
-                            <li key={a} className="flex gap-2.5">
+                            <li key={a} className="hover-line flex gap-2.5 rounded-lg px-2 py-1.5">
                               <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-gradient-to-r from-sky to-teal" />
                               <span>{a}</span>
                             </li>
@@ -104,6 +104,33 @@ export default function Journey() {
               </Reveal>
             ))}
           </div>
+        </div>
+
+        {/* Metrics table (2 columns) with hover effect */}
+        <div className="mt-16">
+          <Reveal>
+            <h3 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink">{t.metricsTitle}</h3>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-ink/8 bg-white/70">
+              <div className="grid grid-cols-[0.9fr_1.6fr] border-b border-ink/8 bg-paper/60 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-teal sm:grid-cols-[0.7fr_1.8fr]">
+                <span>{t.metricsCols[0]}</span>
+                <span>{t.metricsCols[1]}</span>
+              </div>
+              {t.metrics.map((m) => (
+                <div
+                  key={m.value + m.label}
+                  className="metric-row grid grid-cols-[0.9fr_1.6fr] items-center gap-3 border-b border-ink/5 px-5 py-4 transition-colors last:border-0 sm:grid-cols-[0.7fr_1.8fr]"
+                >
+                  <div>
+                    <div className="gradient-text font-display text-2xl font-extrabold tracking-[-0.03em]">{m.value}</div>
+                    <div className="text-xs text-body">{m.label}</div>
+                  </div>
+                  <p className="text-sm leading-6 text-body">{m.result}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

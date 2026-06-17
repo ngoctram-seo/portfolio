@@ -57,6 +57,32 @@ export const companyDomain = (company: string): string => {
   return '';
 };
 
+// Logo domain for tools / software / AI (used in Skills chips)
+export const toolDomain = (name: string): string => {
+  const map: Record<string, string> = {
+    'Ahrefs': 'ahrefs.com',
+    'Semrush': 'semrush.com',
+    'Screaming Frog': 'screamingfrog.co.uk',
+    'WebSite Auditor': 'link-assistant.com',
+    'Keywordtool.io': 'keywordtool.io',
+    'Google Analytics 4': 'google.com',
+    'Google Search Console': 'google.com',
+    'Looker Studio': 'google.com',
+    'Claude': 'claude.ai',
+    'ChatGPT': 'openai.com',
+    'Codex': 'openai.com',
+    'Perplexity': 'perplexity.ai',
+    'Gemini': 'gemini.google.com',
+    'NotebookLM': 'google.com',
+    'Google Apps Script': 'google.com',
+    'n8n': 'n8n.io',
+    'Make': 'make.com',
+    'IFTTT': 'ifttt.com',
+    'Figma': 'figma.com'
+  };
+  return map[name] || '';
+};
+
 type TimelineItem = {
   company: string;
   role: string;
@@ -87,7 +113,7 @@ type Dict = {
     floats: string[];
   };
   about: { eyebrow: string; heading: string; lead: string; highlights: string[]; eduTitle: string; education: { school: string; degree: string; time: string }[]; certsTitle: string; certs: string[] };
-  journey: { eyebrow: string; heading: string; sub: string; chartCaption: string; items: TimelineItem[] };
+  journey: { eyebrow: string; heading: string; sub: string; chartCaption: string; items: TimelineItem[]; metricsTitle: string; metricsCols: [string, string]; metrics: { value: string; label: string; result: string }[] };
   projects: { eyebrow: string; heading: string; sub: string; more: string; items: Project[] };
   stack: { eyebrow: string; heading: string; groups: { title: string; items: string[] }[] };
   contact: { eyebrow: string; heading: string; lead: string; location: string; contactNow: string; downloadEN: string; downloadVI: string; rights: string };
@@ -148,6 +174,16 @@ export const content: Record<Lang, Dict> = {
       heading: 'Hành trình 5 năm thực chiến',
       sub: 'Mỗi cột mốc gồm thành tựu đo lường được và những gì đã triển khai để đạt được.',
       chartCaption: 'Tăng trưởng organic traffic của hệ sinh thái Linh Anh (nguồn: Ahrefs).',
+      metricsTitle: 'Những con số biết nói',
+      metricsCols: ['Chỉ số', 'Kết quả & ý nghĩa'],
+      metrics: [
+        { value: '172.434', label: 'sessions/tháng', result: 'Lưu lượng organic cho thammylinhanh.vn — chiếm ~58% tổng traffic.' },
+        { value: '+45%', label: 'organic traffic', result: 'Tăng trưởng chỉ trong 4 tháng nhờ Entity SEO & tối ưu on-page.' },
+        { value: '90%', label: 'của 8.000+ từ khóa', result: 'Duy trì Top 1-3 Google cho danh mục thương mại tại MWG.' },
+        { value: '14.000+', label: 'từ khóa/tuần', result: 'Theo dõi tự động bằng Apps Script + AI, giảm 20% chi phí.' },
+        { value: '36.000', label: 'organic sessions', result: 'Mở rộng linhanhacademy.edu.vn, thúc đẩy đăng ký có ý định cao.' },
+        { value: '8.000', label: 'sessions/tháng', result: 'Đưa deco-crystal.com đạt mốc này trong 10 tháng (GTV).' }
+      ],
       items: [
         {
           company: 'Công ty CP Đầu tư Thế Giới Di Động (MWG)',
@@ -222,7 +258,8 @@ export const content: Record<Lang, Dict> = {
         { title: 'SEO & GEO', items: ['Technical SEO', 'Entity SEO', 'Semantic SEO', 'On-page SEO', 'Off-page SEO', 'GEO', 'Schema Markup', 'E-E-A-T', 'Keyword Research', 'Link Building', 'Core Web Vitals', 'Internal Linking'] },
         { title: 'Phân tích & Báo cáo', items: ['Google Analytics 4', 'Google Search Console', 'Looker Studio', 'Ahrefs', 'Semrush', 'Screaming Frog', 'WebSite Auditor', 'Keywordtool.io'] },
         { title: 'AI & Tự động hóa', items: ['Claude', 'ChatGPT', 'Codex', 'Perplexity', 'Gemini', 'NotebookLM', 'Google Apps Script', 'n8n', 'Make', 'IFTTT'] },
-        { title: 'Kỹ năng kỹ thuật', items: ['Figma', 'HTML cơ bản', 'Tối ưu Sitemap', 'Tối ưu hình ảnh', 'UX-UI Wireframing'] }
+        { title: 'Kỹ năng kỹ thuật', items: ['Figma', 'HTML cơ bản', 'Tối ưu Sitemap', 'Tối ưu hình ảnh', 'UX-UI Wireframing'] },
+        { title: 'Quản lý & Phối hợp', items: ['Quản lý nhân sự SEO & Content', 'Làm việc liên phòng ban', 'Phối hợp QC, BA, Dev', 'Dẫn dắt & đào tạo đội nhóm', 'Quản lý dự án SEO'] }
       ]
     },
     contact: {
@@ -282,6 +319,16 @@ export const content: Record<Lang, Dict> = {
       heading: '5 Years in the Trenches',
       sub: 'Each milestone pairs measurable results with what was implemented to get there.',
       chartCaption: 'Organic traffic growth across the Linh Anh ecosystem (source: Ahrefs).',
+      metricsTitle: 'The numbers that matter',
+      metricsCols: ['Metric', 'Result & meaning'],
+      metrics: [
+        { value: '172,434', label: 'sessions/mo', result: 'Organic traffic for thammylinhanh.vn — ~58% of total traffic.' },
+        { value: '+45%', label: 'organic traffic', result: 'Growth in just 4 months via Entity SEO & on-page optimization.' },
+        { value: '90%', label: 'of 8,000+ keywords', result: 'Sustained in Google Top 1-3 for commercial categories at MWG.' },
+        { value: '14,000+', label: 'keywords/week', result: 'Automated tracking with Apps Script + AI, cutting cost by 20%.' },
+        { value: '36,000', label: 'organic sessions', result: 'Scaled linhanhacademy.edu.vn, driving high-intent signups.' },
+        { value: '8,000', label: 'sessions/mo', result: 'Grew deco-crystal.com to this in 10 months (GTV).' }
+      ],
       items: [
         {
           company: 'The Gioi Di Dong (MWG)',
@@ -356,7 +403,8 @@ export const content: Record<Lang, Dict> = {
         { title: 'SEO & GEO', items: ['Technical SEO', 'Entity SEO', 'Semantic SEO', 'On-page SEO', 'Off-page SEO', 'GEO', 'Schema Markup', 'E-E-A-T', 'Keyword Research', 'Link Building', 'Core Web Vitals', 'Internal Linking'] },
         { title: 'Analytics & Reporting', items: ['Google Analytics 4', 'Google Search Console', 'Looker Studio', 'Ahrefs', 'Semrush', 'Screaming Frog', 'WebSite Auditor', 'Keywordtool.io'] },
         { title: 'AI & Automation', items: ['Claude', 'ChatGPT', 'Codex', 'Perplexity', 'Gemini', 'NotebookLM', 'Google Apps Script', 'n8n', 'Make', 'IFTTT'] },
-        { title: 'Technical Skills', items: ['Figma', 'HTML Basics', 'Sitemap Optimization', 'Image Optimization', 'UX-UI Wireframing'] }
+        { title: 'Technical Skills', items: ['Figma', 'HTML Basics', 'Sitemap Optimization', 'Image Optimization', 'UX-UI Wireframing'] },
+        { title: 'Management & Collaboration', items: ['SEO & Content team management', 'Cross-functional collaboration', 'Working with QC, BA, Dev', 'Team leadership & training', 'SEO project management'] }
       ]
     },
     contact: {
