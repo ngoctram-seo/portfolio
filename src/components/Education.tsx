@@ -2,7 +2,7 @@ import { GraduationCap, Award } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Reveal from '@/components/Reveal';
-import { useLang, content } from '@/i18n';
+import { useLang, content, IMG } from '@/i18n';
 
 export default function Education() {
   const { lang } = useLang();
@@ -40,10 +40,18 @@ export default function Education() {
                 </p>
                 <div className="mt-4 space-y-3">
                   {a.education.map((e) => (
-                    <div key={e.school}>
-                      <p className="text-sm font-bold text-ink">{e.school}</p>
-                      <p className="text-sm text-body">{e.degree}</p>
-                      <p className="text-xs font-medium text-teal">{e.time}</p>
+                    <div key={e.school} className="flex items-start gap-3">
+                      <img
+                        src={`${IMG}logo-ufm.png`}
+                        alt="UFM"
+                        className="mt-0.5 h-9 w-9 flex-none rounded-full object-contain"
+                        loading="lazy"
+                      />
+                      <div>
+                        <p className="text-sm font-bold text-ink">{e.school}</p>
+                        <p className="text-sm text-body">{e.degree}</p>
+                        <p className="text-xs font-medium text-teal">{e.time}</p>
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -13,7 +13,7 @@ export default function Quote() {
           </div>
         </Reveal>
         <Reveal delay={60}>
-          <p className="signature text-[clamp(1.7rem,3.6vw,2.9rem)] leading-[1.25] text-ink">
+          <p className="signature bg-gradient-to-r from-indigo via-sky to-teal bg-clip-text text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1.2] text-transparent">
             Focus on the user and all else will follow
           </p>
         </Reveal>

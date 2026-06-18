@@ -20,20 +20,22 @@ export default function Contact() {
       <div className="relative mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <Reveal>
-            <div>
+            <div className="text-center lg:text-left">
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-teal">{t.eyebrow}</p>
-              <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-ink">
+              <h2 className="mx-auto mt-5 max-w-3xl font-display text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-ink lg:mx-0">
                 {t.heading}
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-8 text-body">{t.lead}</p>
+              <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-body lg:mx-0">{t.lead}</p>
               {/* Primary CTA */}
-              <Button asChild size="lg" className="cv-glow group mt-8 bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
-                <a href={`mailto:${EMAIL}`}>
-                  <Mail className="mr-3 h-5 w-5" />
-                  {t.contactNow}
-                  <ArrowRight className="ml-3 h-4 w-4 transition group-hover:translate-x-1" />
-                </a>
-              </Button>
+              <div className="mt-8 flex justify-center lg:justify-start">
+                <Button asChild size="lg" className="cv-glow group bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
+                  <a href={`mailto:${EMAIL}`}>
+                    <Mail className="mr-3 h-5 w-5" />
+                    {t.contactNow}
+                    <ArrowRight className="ml-3 h-4 w-4 transition group-hover:translate-x-1" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </Reveal>
           <Reveal delay={120}>

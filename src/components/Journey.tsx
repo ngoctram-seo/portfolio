@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Reveal from '@/components/Reveal';
 import LogoImg from '@/components/LogoImg';
+import ImageZoom from '@/components/ImageZoom';
 import { useLang, content, IMG, companyDomain } from '@/i18n';
 
 export default function Journey() {
@@ -87,7 +88,7 @@ export default function Journey() {
 
                     {item.chart && (
                       <div className="mt-6 rounded-2xl border border-ink/5 bg-white p-2">
-                        <img src={chart} alt={t.chartCaption} className="w-full rounded-xl" loading="lazy" />
+                        <ImageZoom src={chart} alt={t.chartCaption} className="w-full rounded-xl" />
                         <p className="px-2 py-2 text-xs text-body">{t.chartCaption}</p>
                       </div>
                     )}

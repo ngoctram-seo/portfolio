@@ -12,16 +12,15 @@ export default function Stack() {
   const { lang } = useLang();
   const t = content[lang].stack;
   const groups = t.groups;
-  const [start, setStart] = useState(0);
+  const n = groups.length;
+  const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => setStart((s) => (s + 1) % groups.length), 3500);
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 2500);
     return () => clearInterval(id);
-  }, [paused, groups.length]);
-
-  const visible = [0, 1, 2].map((o) => (start + o) % groups.length);
+  }, [paused, n]);
 
   return (
     <section id="stack" className="relative overflow-hidden px-5 py-20 sm:px-8 lg:py-28">
@@ -36,23 +35,42 @@ export default function Stack() {
           </h2>
         </Reveal>
 
-        {/* Carousel: 3 cards at a time, auto-rotating */}
+        {/* Coverflow carousel */}
         <div
-          className="mt-10"
+          className="relative mx-auto mt-12 h-[440px] max-w-5xl"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div key={start} className="grid animate-fade-up gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((gi) => {
-              const group = groups[gi];
-              const Icon = ICONS[gi % ICONS.length];
-              return (
-                <Card key={group.title} className="h-full p-5">
-                  <span className="liquid relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/70 bg-white/80 px-3.5 py-2 text-sm font-bold tracking-tight text-ink shadow-sm backdrop-blur">
-                    <Icon className="h-4 w-4 text-teal" />
-                    {group.title}
-                  </span>
-                  <div className="mt-4 flex flex-wrap gap-2">
+          {groups.map((group, i) => {
+            let d = i - active;
+            if (d > n / 2) d -= n;
+            if (d < -n / 2) d += n;
+            const isCenter = d === 0;
+            const visible = Math.abs(d) <= 1;
+            const Icon = ICONS[i % ICONS.length];
+            return (
+              <div
+                key={group.title}
+                onClick={() => !isCenter && setActive(i)}
+                className={`absolute left-1/2 top-0 w-[84%] sm:w-[62%] lg:w-[46%] transition-all duration-700 ease-out ${
+                  isCenter ? 'z-30 cursor-default' : 'cursor-pointer'
+                }`}
+                style={{
+                  transform: `translateX(calc(-50% + ${d * 58}%)) scale(${isCenter ? 1 : 0.82})`,
+                  opacity: visible ? 1 : 0,
+                  zIndex: visible ? (isCenter ? 30 : 20) : 0,
+                  pointerEvents: visible ? 'auto' : 'none'
+                }}
+                aria-hidden={!isCenter}
+              >
+                <Card className="relative h-[400px] overflow-hidden p-6">
+                  <div className="flex justify-center">
+                    <span className="liquid relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/70 bg-white/85 px-4 py-2 text-sm font-bold tracking-tight text-ink shadow-sm backdrop-blur">
+                      <Icon className="h-4 w-4 text-teal" />
+                      {group.title}
+                    </span>
+                  </div>
+                  <div className="mt-5 flex flex-wrap justify-center gap-2">
                     {group.items.map((item) => {
                       const domain = toolDomain(item);
                       return (
@@ -72,22 +90,27 @@ export default function Stack() {
                       );
                     })}
                   </div>
+                  {/* Dim overlay for side cards */}
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-[inherit] bg-ink/35 transition-opacity duration-700"
+                    style={{ opacity: isCenter ? 0 : 1 }}
+                  />
                 </Card>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
+        </div>
 
-          {/* Dots */}
-          <div className="mt-6 flex justify-center gap-2">
-            {groups.map((g, i) => (
-              <button
-                key={g.title}
-                onClick={() => setStart(i)}
-                aria-label={`Nhóm ${i + 1}`}
-                className={`h-2 rounded-full transition-all ${i === start ? 'w-6 bg-teal' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
-              />
-            ))}
-          </div>
+        {/* Dots */}
+        <div className="mt-6 flex justify-center gap-2">
+          {groups.map((g, i) => (
+            <button
+              key={g.title}
+              onClick={() => setActive(i)}
+              aria-label={`Nhóm ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${i === active ? 'w-6 bg-teal' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
+            />
+          ))}
         </div>
       </div>
     </section>

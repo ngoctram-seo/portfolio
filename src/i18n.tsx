@@ -121,14 +121,6 @@ type Dict = {
   contact: { eyebrow: string; heading: string; lead: string; location: string; contactNow: string; downloadEN: string; downloadVI: string; rights: string };
 };
 
-const placeholderProjects = (more: string): Project[] =>
-  Array.from({ length: 6 }, (_, i) => ({
-    title: `${more} ${i + 1}`,
-    blurb: '',
-    href: '#',
-    img: ''
-  }));
-
 export const content: Record<Lang, Dict> = {
   vi: {
     nav: { about: 'Giới thiệu', journey: 'Hành trình', projects: 'Dự án', stack: 'Kỹ năng', contact: 'Liên hệ', downloadCV: 'Tải CV', contactNow: 'Liên hệ ngay' },
@@ -251,7 +243,14 @@ export const content: Record<Lang, Dict> = {
       heading: 'Sản phẩm & Giải pháp',
       sub: 'Nơi tôi trưng bày các sản phẩm, dự án và thành tựu tiêu biểu.',
       more: 'Xem thêm',
-      items: placeholderProjects('Dự án')
+      items: [
+        { title: 'Tạo workflow N8N tự động', blurb: 'Tự động hóa quy trình SEO: đọc Google Sheet, fetch sản phẩm, SERP, AI sinh nội dung và ghi kết quả.', href: '#', img: 'projects/n8n-workflow.png' },
+        { title: 'Build tool check thứ hạng từ khóa', blurb: 'Công cụ kiểm tra thứ hạng Google realtime theo quốc gia & thiết bị, xuất CSV/JSON.', href: '#', img: 'projects/rank-checker.png' },
+        { title: 'Dự án 3', blurb: '', href: '#', img: '' },
+        { title: 'Dự án 4', blurb: '', href: '#', img: '' },
+        { title: 'Dự án 5', blurb: '', href: '#', img: '' },
+        { title: 'Dự án 6', blurb: '', href: '#', img: '' }
+      ]
     },
     stack: {
       eyebrow: 'Kỹ năng',
@@ -396,7 +395,14 @@ export const content: Record<Lang, Dict> = {
       heading: 'Products & Solutions',
       sub: 'Where I showcase my standout products, projects, and achievements.',
       more: 'View more',
-      items: placeholderProjects('Project')
+      items: [
+        { title: 'Automated N8N workflow', blurb: 'SEO automation: read Google Sheets, fetch products, SERP, AI content generation and write-back.', href: '#', img: 'projects/n8n-workflow.png' },
+        { title: 'Keyword rank checker tool', blurb: 'Realtime Google rank checker by country & device, with CSV/JSON export.', href: '#', img: 'projects/rank-checker.png' },
+        { title: 'Project 3', blurb: '', href: '#', img: '' },
+        { title: 'Project 4', blurb: '', href: '#', img: '' },
+        { title: 'Project 5', blurb: '', href: '#', img: '' },
+        { title: 'Project 6', blurb: '', href: '#', img: '' }
+      ]
     },
     stack: {
       eyebrow: 'Skills',
