@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Search, BarChart3, Bot, Wrench, Users, Sparkles } from 'lucide-react';
+import { Search, BarChart3, Bot, Wrench, Users, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import Reveal from '@/components/Reveal';
@@ -41,6 +41,24 @@ export default function Stack() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
+          {/* Prev / Next arrows (liquid glass) */}
+          <button
+            type="button"
+            onClick={() => setActive((a) => (a - 1 + n) % n)}
+            aria-label="Trước"
+            className="liquid absolute left-0 top-[40%] z-40 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/70 bg-white/70 text-ink shadow-soft backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/90 sm:-left-3 lg:-left-6"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setActive((a) => (a + 1) % n)}
+            aria-label="Sau"
+            className="liquid absolute right-0 top-[40%] z-40 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/70 bg-white/70 text-ink shadow-soft backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/90 sm:-right-3 lg:-right-6"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
           {groups.map((group, i) => {
             let d = i - active;
             if (d > n / 2) d -= n;
@@ -52,8 +70,8 @@ export default function Stack() {
               <div
                 key={group.title}
                 onClick={() => !isCenter && setActive(i)}
-                className={`absolute left-1/2 top-0 w-[84%] sm:w-[62%] lg:w-[46%] transition-all duration-700 ease-out ${
-                  isCenter ? 'z-30 cursor-default' : 'cursor-pointer'
+                className={`group absolute left-1/2 top-0 w-[84%] sm:w-[62%] lg:w-[46%] transition-all duration-700 ease-out ${
+                  isCenter ? 'z-30 cursor-default' : 'cursor-pointer hover:opacity-100'
                 }`}
                 style={{
                   transform: `translateX(calc(-50% + ${d * 58}%)) scale(${isCenter ? 1 : 0.82})`,
@@ -90,10 +108,11 @@ export default function Stack() {
                       );
                     })}
                   </div>
-                  {/* Dim overlay for side cards */}
+                  {/* Dim overlay for side cards (lightens on hover) */}
                   <div
-                    className="pointer-events-none absolute inset-0 rounded-[inherit] bg-ink/35 transition-opacity duration-700"
-                    style={{ opacity: isCenter ? 0 : 1 }}
+                    className={`pointer-events-none absolute inset-0 rounded-[inherit] transition-all duration-500 ${
+                      isCenter ? 'bg-transparent' : 'bg-ink/35 group-hover:bg-ink/10'
+                    }`}
                   />
                 </Card>
               </div>

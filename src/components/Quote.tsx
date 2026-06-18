@@ -4,7 +4,7 @@ export default function Quote() {
   return (
     <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(110%_120%_at_50%_0%,#eef2ff,transparent_60%)]" />
-      <div className="relative mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto max-w-6xl text-center">
         <Reveal>
           <div className="mx-auto mb-5 flex items-center justify-center gap-3 text-teal/40">
             <span className="h-px w-10 bg-current" />
@@ -13,7 +13,7 @@ export default function Quote() {
           </div>
         </Reveal>
         <Reveal delay={60}>
-          <p className="signature bg-gradient-to-r from-indigo via-sky to-teal bg-clip-text text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1.2] text-transparent">
+          <p className="signature bg-gradient-to-r from-indigo via-sky to-teal bg-clip-text text-[clamp(2.2rem,5.2vw,4rem)] leading-[1.2] text-transparent lg:whitespace-nowrap">
             Focus on the user and all else will follow
           </p>
         </Reveal>
