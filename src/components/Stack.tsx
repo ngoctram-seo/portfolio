@@ -27,7 +27,7 @@ export default function Stack() {
           {t.groups.map((group, i) => (
             <Reveal key={group.title} delay={i * 70}>
               <Card className="h-full p-5">
-                <h3 className="text-sm font-bold uppercase tracking-[0.1em] text-teal">{group.title}</h3>
+                <h3 className="inline-block rounded-lg border-2 border-teal/30 bg-teal/5 px-3 py-1.5 text-sm font-bold uppercase tracking-[0.1em] text-teal">{group.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => {
                     const domain = toolDomain(item);

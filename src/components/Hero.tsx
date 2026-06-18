@@ -17,9 +17,9 @@ export default function Hero() {
       <div className="aurora aurora-3 bottom-[-6rem] left-1/3 h-72 w-72 bg-teal/30" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-32 sm:px-8 lg:pt-28">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-10">
-          <div>
-            {/* Availability status */}
+        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-10">
+          {/* Top text: status + name + role */}
+          <div className="order-1 lg:col-start-1 lg:row-start-1">
             <div className="animate-fade-up flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1.5 text-xs font-semibold text-teal">
                 <span className="relative flex h-2 w-2">
@@ -32,9 +32,7 @@ export default function Hero() {
                 {t.modes.map((m, i) => (
                   <span
                     key={m}
-                    className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
-                      i === 0 ? 'bg-indigo/12 text-indigo' : 'bg-sky/12 text-sky'
-                    }`}
+                    className={`rounded-full px-2.5 py-1 text-xs font-semibold ${i === 0 ? 'bg-indigo/12 text-indigo' : 'bg-sky/12 text-sky'}`}
                   >
                     {m}
                   </span>
@@ -46,19 +44,26 @@ export default function Hero() {
               {t.hello} <span className="gradient-text">{t.name}</span>.
             </h1>
 
-            {/* Role line (replaces old tagline) + typing specialties */}
             <div className="animate-fade-up mt-4 [animation-delay:200ms]">
-              <p className="font-display text-[clamp(1.3rem,3vw,2.1rem)] font-bold tracking-[-0.02em] text-ink">
-                {t.role}
-              </p>
+              <p className="font-display text-[clamp(1.3rem,3vw,2.1rem)] font-bold tracking-[-0.02em] text-ink">{t.role}</p>
               <p className="mt-1 font-display text-[clamp(1rem,2vw,1.35rem)] font-semibold text-ink/55">
                 <Typing words={t.rotating} className="gradient-text" />
               </p>
             </div>
+          </div>
 
-            <p className="animate-fade-up mt-5 max-w-2xl text-base leading-8 text-body [animation-delay:300ms]">
-              {t.intro}
-            </p>
+          {/* Portrait */}
+          <Magnet
+            className="order-2 mx-auto w-full max-w-[20rem] animate-fade-up sm:max-w-[24rem] lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center [animation-delay:260ms]"
+            padding={140}
+            strength={6}
+          >
+            <img src={portrait} alt="Le Hoang Ngoc Tram" className="relative w-full drop-shadow-xl" loading="eager" />
+          </Magnet>
+
+          {/* Bottom text: intro + CTAs */}
+          <div className="order-3 lg:col-start-1 lg:row-start-2">
+            <p className="animate-fade-up max-w-2xl text-base leading-8 text-body [animation-delay:300ms]">{t.intro}</p>
 
             <div className="animate-fade-up mt-8 flex flex-col gap-3 sm:flex-row [animation-delay:400ms]">
               <Button asChild size="lg" className="cv-glow group bg-gradient-to-r from-indigo to-sky text-white hover:opacity-95">
@@ -77,18 +82,15 @@ export default function Hero() {
               </Button>
             </div>
           </div>
-
-          {/* Portrait (image already has its own glowing oval ring) */}
-          <Magnet className="animate-fade-up relative mx-auto w-full max-w-[20rem] sm:max-w-[24rem] [animation-delay:260ms]" padding={140} strength={6}>
-            <div className="absolute inset-6 rounded-full bg-gradient-to-br from-indigo/30 via-sky/25 to-teal/30 blur-3xl" />
-            <img src={portrait} alt="Le Hoang Ngoc Tram" className="relative w-full drop-shadow-xl" loading="eager" />
-          </Magnet>
         </div>
 
-        {/* Stats — large gradient numbers inside bordered cards */}
+        {/* Stats */}
         <div className="animate-fade-up mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 [animation-delay:480ms]">
-          {t.stats.map(([number, label]) => (
-            <div key={label} className="glass rounded-2xl px-4 py-4">
+          {t.stats.map(([number, label], i) => (
+            <div
+              key={label}
+              className={`glass rounded-2xl px-4 py-4 ${i === t.stats.length - 1 ? 'max-sm:col-span-2 max-sm:mx-auto max-sm:w-1/2' : ''}`}
+            >
               <div className="gradient-text font-display text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">{number}</div>
               <div className="mt-1 text-[0.7rem] font-medium uppercase tracking-[0.1em] text-body">{label}</div>
             </div>

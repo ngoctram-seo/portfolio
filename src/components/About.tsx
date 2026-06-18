@@ -4,14 +4,14 @@ import AnimatedText from '@/components/AnimatedText';
 import { useLang, content } from '@/i18n';
 
 const floatPos = [
-  { top: '10%', left: '3%' },
-  { top: '16%', right: '6%' },
-  { top: '44%', left: '1%' },
-  { bottom: '20%', right: '4%' },
-  { bottom: '10%', left: '8%' },
-  { top: '60%', right: '40%' },
-  { top: '6%', left: '44%' },
-  { bottom: '30%', right: '46%' }
+  { top: '5%', left: '4%' },
+  { top: '3%', left: '34%' },
+  { top: '6%', right: '24%' },
+  { top: '4%', right: '4%' },
+  { bottom: '5%', left: '8%' },
+  { bottom: '7%', left: '38%' },
+  { bottom: '4%', right: '26%' },
+  { bottom: '6%', right: '6%' }
 ];
 
 export default function About() {

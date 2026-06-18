@@ -7,6 +7,7 @@ import LogoMarquee from '@/components/LogoMarquee';
 import Projects from '@/components/Projects';
 import Stack from '@/components/Stack';
 import Education from '@/components/Education';
+import Quote from '@/components/Quote';
 import Contact from '@/components/Contact';
 import BackToTop from '@/components/BackToTop';
 import ZaloButton from '@/components/ZaloButton';
@@ -32,6 +33,7 @@ export default function App() {
           <Projects />
           <Stack />
           <Education />
+          <Quote />
           <Contact />
         </main>
 
